@@ -10,6 +10,10 @@ class DrawingScreen extends StatefulWidget {
 class _DrawingScreenState extends State<DrawingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Text("Анвар сосо гок гок гок"),
+      ),
+    );
   }
 }
