@@ -13,8 +13,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          "Анвар сосо гок гок гок",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
+          "Drawing screen not yet implemented...",
         ),
       ),
     );

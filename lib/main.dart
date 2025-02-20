@@ -34,10 +34,7 @@ class SumiStudioApp extends StatelessWidget {
             }
             final initialized = box.get('initialized') as Initialized;
             return Scaffold(
-              appBar: AppBar(title: const Text('ОНО РАБОТАЕТ ПРИКИНЬТЕ')),
-              body: !initialized.isApplyPolicy
-                  ? PageViewExample()
-                  : DrawingScreen(),
+              body: !initialized.isApplyPolicy ? StartPages() : MainScreen(),
             );
           } else if (snapshot.hasError) {
             return Scaffold(

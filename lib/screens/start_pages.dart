@@ -4,15 +4,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/initialized.dart';
 import 'package:my_manga_h/screens/1screens.dart';
 
-class PageViewExample extends StatefulWidget {
-  const PageViewExample({super.key});
+class StartPages extends StatefulWidget {
+  const StartPages({super.key});
 
   @override
-  State<PageViewExample> createState() => _PageViewExampleState();
+  State<StartPages> createState() => _StartPagesState();
 }
 
-class _PageViewExampleState extends State<PageViewExample>
-    with TickerProviderStateMixin {
+class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
