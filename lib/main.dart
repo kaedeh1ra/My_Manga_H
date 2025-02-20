@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(InitializedAdapter());
-  await Hive.openBox(
-      'initialized'); // Открываем box здесь, но не присваиваем глобальной переменной
+  await Hive.openBox('initialized');
   runApp(SumiStudioApp());
 }
 
