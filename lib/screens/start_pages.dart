@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_manga_h/initialized.dart';
+import 'package:my_manga_h/screens/1screens.dart';
 
 class PageViewExample extends StatefulWidget {
   const PageViewExample({super.key});
@@ -32,28 +35,62 @@ class _PageViewExampleState extends State<PageViewExample>
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: <Widget>[
-        PageView(
-          /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-          /// Use [Axis.vertical] to scroll vertically.
-          controller: _pageViewController,
-          onPageChanged: _handlePageViewChanged,
-          children: <Widget>[
-            Center(child: Text('денис Гы гы x1', style: textTheme.titleLarge)),
-            Center(child: Text('денис Гы гы x2', style: textTheme.titleLarge)),
-            Center(child: Text('денис Гы гы x3', style: textTheme.titleLarge)),
-          ],
-        ),
-        PageIndicator(
-          tabController: _tabController,
-          currentPageIndex: _currentPageIndex,
-          onUpdateCurrentPageIndex: _updateCurrentPageIndex,
-          isOnDesktopAndWeb: _isOnDesktopAndWeb,
-        ),
-      ],
+    return ValueListenableBuilder(
+        valueListenable: Hive.box('initialized').listenable(),
+        builder: (context, value, _) {
+          return Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              PageView(
+                /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+                /// Use [Axis.vertical] to scroll vertically.
+                controller: _pageViewController,
+                onPageChanged: _handlePageViewChanged,
+                children: <Widget>[
+                  Center(
+                      child:
+                          Text('денис Гы гы x1', style: textTheme.titleLarge)),
+                  Center(
+                      child:
+                          Text('денис Гы гы x2', style: textTheme.titleLarge)),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        _updateInitialBox();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DrawingScreen()),
+                        );
+                      },
+                      child:
+                          Text('денис Гы гы x3', style: textTheme.titleLarge),
+                    ),
+                  ),
+                ],
+              ),
+              PageIndicator(
+                tabController: _tabController,
+                currentPageIndex: _currentPageIndex,
+                onUpdateCurrentPageIndex: _updateCurrentPageIndex,
+                isOnDesktopAndWeb: _isOnDesktopAndWeb,
+              ),
+            ],
+          );
+        });
+  }
+
+  void _updateInitialBox() async {
+    final box = await Hive.openBox('initialized');
+    final initialized = box.get('initialized') as Initialized;
+    final updatedInitialized = Initialized(
+      isApplyPolicy: true,
+      isCreateFirstManga: initialized.isCreateFirstManga,
+      isCheckedMangaFirstly: initialized.isCheckedMangaFirstly,
     );
+    await box.put('initialized', updatedInitialized);
+
+    await box.close();
   }
 
   void _handlePageViewChanged(int currentPageIndex) {
