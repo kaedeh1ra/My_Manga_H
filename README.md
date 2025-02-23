@@ -1,4 +1,4 @@
-# my_manga_h
+# Sumi Studio
 
 A new Flutter project.
 

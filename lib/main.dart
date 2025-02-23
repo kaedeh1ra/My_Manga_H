@@ -8,6 +8,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(InitializedAdapter());
   await Hive.openBox('initialized');
+  await Hive.openBox('images');
   runApp(SumiStudioApp());
 }
 
