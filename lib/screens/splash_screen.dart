@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
                     child: child,
                   );
                 },
-                child: Text('Добавьте сюда анимку пока база грузится'),
+                child: Text('Добавьте сюда че нибудь пока база грузится'),
               ),
             ),
           );
@@ -73,7 +73,23 @@ class _SplashScreenState extends State<SplashScreen>
             );
           }
           final initialized = box.get('initialized') as Initialized;
-          return initialized.isApplyPolicy ? MainScreen() : StartPages();
+          final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+          // Используем WidgetsBinding.instance.addPostFrameCallback для навигации
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    initialized.isApplyPolicy ? MainScreen() : StartPages(),
+              ),
+            );
+          });
+
+          // Возвращаем пустой контейнер, пока выполняется навигация
+          return Container(
+            color: colorScheme.background,
+          );
         } else if (snapshot.hasError) {
           return Scaffold(
             body: Center(child: Text('Error: ${snapshot.error}')),
@@ -89,4 +105,11 @@ class _SplashScreenState extends State<SplashScreen>
       },
     );
   }
+}
+
+void goToNewScreenAndRemoveLast(context, var screen) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => screen),
+  );
 }
