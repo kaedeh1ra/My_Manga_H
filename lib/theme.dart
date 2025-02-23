@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppColors {
-  static const secondary = Color(0xFF3B76F6);
-  static const accent = Color(0xFFD6755B);
+  static const backgroundLight = Color(0xFFEAE6DA);
+  static const secondary = Color(0xFFAC91F7);
+  static const accent = Color(0xFFC9F946);
   static const textDark = Color(0xFF53585A);
   static const textLigth = Color(0xFFF5F5F5);
   static const textFaded = Color(0xFF9899A5);
   static const iconLight = Color(0xFFB1B4C0);
   static const iconDark = Color(0xFFB1B3C1);
   static const textHighlight = secondary;
-  static const cardLight = Color(0xFFF9FAFE);
+  static const cardLight = Color(0xFF121212);
   static const cardDark = Color(0xFF303334);
 }
 
 abstract class _LightColors {
-  static const background = Colors.white;
-  static const card = AppColors.cardLight;
+  static const background = AppColors.backgroundLight;
+  static const card = AppColors.backgroundLight;
 }
 
 abstract class _DarkColors {
-  static const background = Color(0xFF1B1E1F);
+  static const background = Color(0xFF121212);
   static const card = AppColors.cardDark;
 }
 
@@ -32,6 +33,22 @@ abstract class AppTheme {
   /// Light theme and its settings.
   static ThemeData light() => ThemeData(
         brightness: Brightness.light,
+        colorScheme:
+            ColorScheme.light().copyWith(background: _LightColors.background),
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.accent, // Цвет фона AppBar
+          // foregroundColor: Colors.white, // Цвет текста и иконок AppBar
+          // elevation: 4, // Тень AppBar
+          // centerTitle: true, // Центрирование заголовка
+          // titleTextStyle: TextStyle(
+          //   fontSize: 20,
+          //   fontWeight: FontWeight.bold,
+          // ), // Стиль текста заголовка
+          // iconTheme: IconThemeData(
+          //   color: Colors.white, // Цвет иконок в AppBar
+          // ),
+          // // ... другие свойства AppBarTheme
+        ),
         hintColor: accentColor,
         visualDensity: visualDensity,
         textTheme:
@@ -47,10 +64,13 @@ abstract class AppTheme {
   /// Dark theme and its settings.
   static ThemeData dark() => ThemeData(
         brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.secondary),
         hintColor: accentColor,
         visualDensity: visualDensity,
+        colorScheme:
+            ColorScheme.dark().copyWith(background: _DarkColors.background),
         textTheme:
-            GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLigth),
+            GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textLigth),
         scaffoldBackgroundColor: _DarkColors.background,
         cardColor: _DarkColors.card,
         primaryTextTheme: const TextTheme(

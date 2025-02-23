@@ -33,50 +33,54 @@ class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return ValueListenableBuilder(
-        valueListenable: Hive.box('initialized').listenable(),
-        builder: (context, value, _) {
-          return Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              PageView(
-                /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-                /// Use [Axis.vertical] to scroll vertically.
-                controller: _pageViewController,
-                onPageChanged: _handlePageViewChanged,
-                children: <Widget>[
-                  Center(
-                      child:
-                          Text('денис Гы гы x1', style: textTheme.titleLarge)),
-                  Center(
-                      child:
-                          Text('денис Гы гы x2', style: textTheme.titleLarge)),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        _updateInitialBox();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DrawingScreen()),
-                        );
-                      },
-                      child:
-                          Text('денис Гы гы x3', style: textTheme.titleLarge),
+    return Container(
+      color: colorScheme.background,
+      child: ValueListenableBuilder(
+          valueListenable: Hive.box('initialized').listenable(),
+          builder: (context, value, _) {
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                PageView(
+                  /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+                  /// Use [Axis.vertical] to scroll vertically.
+                  controller: _pageViewController,
+                  onPageChanged: _handlePageViewChanged,
+                  children: <Widget>[
+                    Center(
+                        child: Text('денис Гы гы x1',
+                            style: textTheme.titleLarge)),
+                    Center(
+                        child: Text('денис Гы гы x2',
+                            style: textTheme.titleLarge)),
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          _updateInitialBox();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainScreen()),
+                          );
+                        },
+                        child:
+                            Text('денис Гы гы x3', style: textTheme.titleLarge),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              PageIndicator(
-                tabController: _tabController,
-                currentPageIndex: _currentPageIndex,
-                onUpdateCurrentPageIndex: _updateCurrentPageIndex,
-                isOnDesktopAndWeb: _isOnDesktopAndWeb,
-              ),
-            ],
-          );
-        });
+                  ],
+                ),
+                PageIndicator(
+                  tabController: _tabController,
+                  currentPageIndex: _currentPageIndex,
+                  onUpdateCurrentPageIndex: _updateCurrentPageIndex,
+                  isOnDesktopAndWeb: _isOnDesktopAndWeb,
+                ),
+              ],
+            );
+          }),
+    );
   }
 
   void _updateInitialBox() async {

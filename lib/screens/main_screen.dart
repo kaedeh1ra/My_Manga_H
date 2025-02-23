@@ -7,7 +7,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Sumi Studio !!")),
-      body: Center(child: Image.asset('assets/images/i.webp')),
+      body: Scaffold(),
     );
   }
 }
