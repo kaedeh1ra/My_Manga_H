@@ -17,6 +17,7 @@ dependencies:
   flutter_drawing_board:
   flutter_native_splash:
   hive:
+  path_provider:
   hive_flutter:
 
 

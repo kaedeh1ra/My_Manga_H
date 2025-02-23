@@ -17,7 +17,7 @@ abstract class AppColors {
 
 abstract class _LightColors {
   static const background = AppColors.backgroundLight;
-  static const card = AppColors.backgroundLight;
+  static const card = AppColors.cardLight;
 }
 
 abstract class _DarkColors {

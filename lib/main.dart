@@ -9,7 +9,7 @@ Future<void> main() async {
   Hive.registerAdapter(InitializedAdapter());
   await Hive.openBox('initialized');
 
-  await Hive.openBox('images');
+  await Hive.openBox<String>('images');
   runApp(SumiStudioApp());
 }
 
