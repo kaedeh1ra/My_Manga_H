@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/widgets/button.dart';
+import 'package:my_manga_h/widgets/manga_card.dart';
 import 'package:my_manga_h/widgets/sumi-banner.dart';
 
 class MainScreen extends StatefulWidget {
@@ -58,22 +59,10 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisSpacing: 10,
                           childAspectRatio: 1,
                         ),
-                        padding: const EdgeInsets.all(10),
                         itemCount: box.length,
                         itemBuilder: (context, index) {
                           final imagePath = box.getAt(index);
-                          return Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: imagePath != null
-                                ? Image.asset(
-                                    'assets/images/i.webp',
-                                    fit: BoxFit.cover,
-                                  )
-                                : SizedBox(), // Обработка null
-                          );
+                          return MangaCard(imagePath: 'assets/images/i.webp');
                         },
                       )
                     : Image.asset(

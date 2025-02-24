@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_manga_h/theme.dart';
 
 class SumiStudioBanner extends StatelessWidget {
@@ -12,8 +13,8 @@ class SumiStudioBanner extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
-        width: size.width, // Задайте желаемую ширину
-        height: size.width * 0.85, // Задайте желаемую высоту
+        width: size.width,
+        height: size.width * 0.85,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black), // Черная рамка
           color: Colors.white, // Белый фон
@@ -41,8 +42,8 @@ class SumiStudioBanner extends StatelessWidget {
 
             // Кнопка внизу справа
             Positioned(
-              bottom: 16,
-              right: 16,
+              bottom: 10,
+              right: 10,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 0,
@@ -62,7 +63,7 @@ class SumiStudioBanner extends StatelessWidget {
                         // Используем Center для центрирования текста
                         child: Text(
                           text,
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 15, // Задайте желаемый размер шрифта
                             color: AppColors
                                 .accent, // Задайте желаемый цвет текста
