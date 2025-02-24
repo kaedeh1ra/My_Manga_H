@@ -41,7 +41,9 @@ class _SplashScreenState extends State<SplashScreen>
       future: Future.wait([
         // Используем Future.wait для одновременного выполнения
         Hive.openBox('initialized'),
-        Future.delayed(const Duration(seconds: 3)), // Задержка 3 секунды
+        Future.delayed(const Duration(seconds: 3)),
+
+        /// Длительность анимации
       ]).then((results) => results[0]),
       builder: (BuildContext context, AsyncSnapshot<Box> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -57,6 +59,8 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
                 child: Text('Добавьте сюда че нибудь пока база грузится'),
+
+                /// TODO: Заменить Text на нужный виджет, предпологается картинка с облачком
               ),
             ),
           );
@@ -77,6 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
 
           // Используем WidgetsBinding.instance.addPostFrameCallback для навигации
           WidgetsBinding.instance.addPostFrameCallback((_) {
+            /// Переход на экран в зависимости от того принял человек политику кондфиденциальности или нет
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

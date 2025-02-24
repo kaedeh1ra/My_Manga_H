@@ -17,6 +17,7 @@ dependencies:
   flutter_drawing_board:
   flutter_native_splash:
   hive:
+  path_provider:
   hive_flutter:
 
 
@@ -74,3 +75,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/app_icon.png"
+fonts:
+  - family: CustomsIcons flutter-icons-4e5b2c64
+    fonts:
+      -asset: fonts/CustomsIcons.ttf C:\Users\Alina\Downloads\flutter-icons-4e5b2c64 (2).zip\flutter-icons-4e5b2c64

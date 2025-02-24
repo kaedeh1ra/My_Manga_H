@@ -49,26 +49,9 @@ class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
                   controller: _pageViewController,
                   onPageChanged: _handlePageViewChanged,
                   children: <Widget>[
-                    Center(
-                        child: Text('денис Гы гы x1',
-                            style: textTheme.titleLarge)),
-                    Center(
-                        child: Text('денис Гы гы x2',
-                            style: textTheme.titleLarge)),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          _updateInitialBox();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MainScreen()),
-                          );
-                        },
-                        child:
-                            Text('денис Гы гы x3', style: textTheme.titleLarge),
-                      ),
-                    ),
+                    FirstWidget(),
+                    SecondWidget(),
+                    ThirdWidget(),
                   ],
                 ),
                 PageIndicator(
@@ -81,19 +64,6 @@ class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
             );
           }),
     );
-  }
-
-  void _updateInitialBox() async {
-    final box = await Hive.openBox('initialized');
-    final initialized = box.get('initialized') as Initialized;
-    final updatedInitialized = Initialized(
-      isApplyPolicy: true,
-      isCreateFirstManga: initialized.isCreateFirstManga,
-      isCheckedMangaFirstly: initialized.isCheckedMangaFirstly,
-    );
-    await box.put('initialized', updatedInitialized);
-
-    await box.close();
   }
 
   void _handlePageViewChanged(int currentPageIndex) {
@@ -194,5 +164,70 @@ class PageIndicator extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FirstWidget extends StatelessWidget {
+  const FirstWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return Center(
+      child: Text('денис Гы гы x1', style: textTheme.titleLarge),
+    );
+  }
+}
+
+class SecondWidget extends StatelessWidget {
+  const SecondWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return Center(
+      child: Text('денис Гы гы x2', style: textTheme.titleLarge),
+    );
+  }
+}
+
+class ThirdWidget extends StatelessWidget {
+  const ThirdWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    /// TODO: Есть кнопка готовая Buttondef() Посмотри её аргументы и добавь на неё принятие политики и переход на другой экран
+    return Center(
+        child: GestureDetector(
+      onTap: () {
+        /// Приянтие политики конфиденциальности находится в функции ниже
+        _updateInitialBox();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainScreen()),
+        );
+      },
+      child: Text('денис Гы гы x3', style: textTheme.titleLarge),
+    ));
+  }
+
+  void _updateInitialBox() async {
+    final box = await Hive.openBox('initialized');
+    final initialized = box.get('initialized') as Initialized;
+    final updatedInitialized = Initialized(
+      isApplyPolicy: true,
+      isCreateFirstManga: initialized.isCreateFirstManga,
+      isCheckedMangaFirstly: initialized.isCheckedMangaFirstly,
+    );
+    await box.put('initialized', updatedInitialized);
+
+    await box.close();
   }
 }

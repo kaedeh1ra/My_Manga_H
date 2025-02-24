@@ -9,7 +9,7 @@ Future<void> main() async {
   Hive.registerAdapter(InitializedAdapter());
   await Hive.openBox('initialized');
 
-  await Hive.openBox('images');
+  await Hive.openBox<String>('images');
   runApp(SumiStudioApp());
 }
 
@@ -25,6 +25,8 @@ class SumiStudioApp extends StatelessWidget {
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.light,
       home: SplashScreen(),
+
+      /// При запуске приложения активируется экран с загрузочной анимацией
     );
   }
 }
