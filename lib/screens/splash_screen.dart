@@ -41,7 +41,9 @@ class _SplashScreenState extends State<SplashScreen>
       future: Future.wait([
         // Используем Future.wait для одновременного выполнения
         Hive.openBox('initialized'),
-        Future.delayed(const Duration(seconds: 3)), // Задержка 3 секунды
+        Future.delayed(const Duration(seconds: 3)),
+
+        /// Длительность анимации
       ]).then((results) => results[0]),
       builder: (BuildContext context, AsyncSnapshot<Box> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
