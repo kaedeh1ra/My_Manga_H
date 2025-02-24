@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Все цвета для приложения уже прописаны здесь!!!
 abstract class AppColors {
   static const backgroundLight = Color(0xFFEAE6DA);
   static const secondary = Color(0xFFAC91F7);

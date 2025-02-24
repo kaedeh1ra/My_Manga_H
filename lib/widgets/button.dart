@@ -4,12 +4,16 @@ import '../theme.dart';
 class Buttondef extends StatelessWidget {
   const Buttondef({
     super.key,
-    required this.icon,
+    this.icon = Icons.image_search_outlined,
     required this.onTap,
     this.width = 200,
     this.height = 30,
+    this.isTextInside = false,
+    this.text = '',
   });
 
+  final bool isTextInside;
+  final String text;
   final IconData icon;
   final VoidCallback onTap;
   final double width;
@@ -34,11 +38,19 @@ class Buttondef extends StatelessWidget {
             onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.all(6),
-              child: Icon(
-                icon,
-                size: 50,
-                color: AppColors.accent,
-              ),
+              child: isTextInside
+                  ? Text(
+                      text,
+
+                      /// Поменяй размер текста если необходимо.
+                      /// Если надо изменить шрифт TextStyle меняешь на GoogleFonts.'название шрифта'(все аргументы)
+                      style: TextStyle(fontSize: 50, color: AppColors.accent),
+                    )
+                  : Icon(
+                      icon,
+                      size: 50,
+                      color: AppColors.accent,
+                    ),
             ),
           ),
         ),

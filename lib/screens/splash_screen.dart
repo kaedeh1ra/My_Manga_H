@@ -57,6 +57,8 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
                 child: Text('Добавьте сюда че нибудь пока база грузится'),
+
+                /// TODO: Заменить Text на нужный виджет, предпологается картинка с облачком
               ),
             ),
           );
@@ -77,6 +79,7 @@ class _SplashScreenState extends State<SplashScreen>
 
           // Используем WidgetsBinding.instance.addPostFrameCallback для навигации
           WidgetsBinding.instance.addPostFrameCallback((_) {
+            /// Переход на экран в зависимости от того принял человек политику кондфиденциальности или нет
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
