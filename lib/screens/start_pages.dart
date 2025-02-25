@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/initialized.dart';
 import 'package:my_manga_h/screens/1screens.dart';
+import 'package:my_manga_h/widgets/button.dart';
 
 class StartPages extends StatefulWidget {
   const StartPages({super.key});
@@ -176,12 +177,16 @@ class FirstWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Column(children: [
-      Expanded(
-
-        child: Image.asset("assets/images/start1.png",fit: BoxFit.cover,),
-      ),
-    ],);
+    return Column(
+      children: [
+        Expanded(
+          child: Image.asset(
+            "assets/images/start1.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -193,14 +198,19 @@ class SecondWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Column(children: [
-      Expanded(
-
-        child: Image.asset("assets/images/start2.png",fit: BoxFit.cover,),
-      ),
-    ],);
+    return Column(
+      children: [
+        Expanded(
+          child: Image.asset(
+            "assets/images/start2.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
+    );
   }
 }
+
 class CheckboxExample extends StatefulWidget {
   const CheckboxExample({super.key});
 
@@ -237,6 +247,7 @@ class _CheckboxExampleState extends State<CheckboxExample> {
     );
   }
 }
+
 class ThirdWidget extends StatelessWidget {
   const ThirdWidget({super.key});
 
@@ -246,21 +257,28 @@ class ThirdWidget extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     /// TODO: Есть кнопка готовая Buttondef() Посмотри её аргументы и добавь на неё принятие политики и переход на другой экран
-    return Center(
-        child: GestureDetector(
-      onTap: () {
-        _updateInitialBox();
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => MainScreen()),
-        );
-      },
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text('ну вот анвар текста добавь'),
+              Align(
+                alignment: Alignment.bottomCenter,
 
-      child: Image.asset("assets/images/start3.png")
-
-
-    ));
-    
+                /// Размер текста в классе самой кнопке поменяй
+                child: Buttondef(
+                  onTap: () {},
+                  isTextInside: true,
+                  text: 'Нажимая далее вы соглашаетесь',
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   void _updateInitialBox() async {
@@ -275,5 +293,4 @@ class ThirdWidget extends StatelessWidget {
 
     await box.close();
   }
-
 }
