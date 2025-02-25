@@ -264,6 +264,10 @@ class ThirdWidget extends StatelessWidget {
             children: [
               Image.asset('assets/images/st_page_cloud.png'),
               Text('ну вот анвар текста добавь'),
+              Expanded(
+                  child: SizedBox(
+                height: 1,
+              )),
               Align(
                 alignment: Alignment.bottomCenter,
 
