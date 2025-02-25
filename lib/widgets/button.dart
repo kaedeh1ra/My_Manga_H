@@ -44,7 +44,7 @@ class Buttondef extends StatelessWidget {
 
                       /// Поменяй размер текста если необходимо.
                       /// Если надо изменить шрифт TextStyle меняешь на GoogleFonts.'название шрифта'(все аргументы)
-                      style: TextStyle(fontSize: 50, color: AppColors.accent),
+                      style: TextStyle(fontSize: 40, color: AppColors.accent),
                     )
                   : Icon(
                       icon,

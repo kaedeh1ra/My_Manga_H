@@ -177,15 +177,27 @@ class FirstWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Column(
-      children: [
-        Expanded(
-          child: Image.asset(
-            "assets/images/start1.png",
-            fit: BoxFit.cover,
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text('Хотите порисовать.С нашим приложением это предложение звучит куда лучше'),
+              Expanded(
+                  child: SizedBox(
+                    height: 1,
+                  )),
+              Align(
+                alignment: Alignment.bottomCenter,
+
+                /// Размер текста в классе самой кнопке поменяй
+
+              )
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
@@ -198,15 +210,27 @@ class SecondWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Column(
-      children: [
-        Expanded(
-          child: Image.asset(
-            "assets/images/start2.png",
-            fit: BoxFit.cover,
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text('В нашем приложении вы можете выразить все свое вдохновение и творить вне зависимости от вашего местоположения'),
+              Expanded(
+                  child: SizedBox(
+                    height: 1,
+                  )),
+              Align(
+                alignment: Alignment.bottomCenter,
+
+                /// Размер текста в классе самой кнопке поменяй
+                
+              )
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
@@ -263,7 +287,7 @@ class ThirdWidget extends StatelessWidget {
           child: Column(
             children: [
               Image.asset('assets/images/st_page_cloud.png'),
-              Text('ну вот анвар текста добавь'),
+              Text('Наше пользовательское соглашение пока несформировано но для будующего маштабирования пусть будет'),
               Expanded(
                   child: SizedBox(
                 height: 1,
