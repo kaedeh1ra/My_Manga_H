@@ -34,6 +34,7 @@ class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    var checkedValue = 5;
 
     return Container(
       color: colorScheme.background,
@@ -175,9 +176,12 @@ class FirstWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Center(
-      child: Text('денис Гы гы x1', style: textTheme.titleLarge),
-    );
+    return Column(children: [
+      Expanded(
+
+        child: Image.asset("assets/images/start1.png",fit: BoxFit.cover,),
+      ),
+    ],);
   }
 }
 
@@ -189,12 +193,50 @@ class SecondWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Center(
-      child: Text('денис Гы гы x2', style: textTheme.titleLarge),
+    return Column(children: [
+      Expanded(
+
+        child: Image.asset("assets/images/start2.png",fit: BoxFit.cover,),
+      ),
+    ],);
+  }
+}
+class CheckboxExample extends StatefulWidget {
+  const CheckboxExample({super.key});
+
+  @override
+  State<CheckboxExample> createState() => _CheckboxExampleState();
+}
+
+class _CheckboxExampleState extends State<CheckboxExample> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<WidgetState> states) {
+      const Set<WidgetState> interactiveStates = <WidgetState>{
+        WidgetState.pressed,
+        WidgetState.hovered,
+        WidgetState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
+    return Checkbox(
+      checkColor: Colors.white,
+      fillColor: WidgetStateProperty.resolveWith(getColor),
+      value: isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          isChecked = value!;
+        });
+      },
     );
   }
 }
-
 class ThirdWidget extends StatelessWidget {
   const ThirdWidget({super.key});
 
@@ -207,15 +249,18 @@ class ThirdWidget extends StatelessWidget {
     return Center(
         child: GestureDetector(
       onTap: () {
-        /// Приянтие политики конфиденциальности находится в функции ниже
         _updateInitialBox();
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => MainScreen()),
         );
       },
-      child: Text('денис Гы гы x3', style: textTheme.titleLarge),
+
+      child: Image.asset("assets/images/start3.png")
+
+
     ));
+    
   }
 
   void _updateInitialBox() async {
@@ -230,4 +275,5 @@ class ThirdWidget extends StatelessWidget {
 
     await box.close();
   }
+
 }
