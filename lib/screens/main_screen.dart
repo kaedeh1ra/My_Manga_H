@@ -77,36 +77,25 @@ class _MainScreenState extends State<MainScreen> {
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
                             childAspectRatio: 1,
-                            mainAxisExtent: 200),
+                            mainAxisExtent: 250),
                         itemCount: box.length,
                         itemBuilder: (context, index) {
-                          //return MangaCard(imagePath: 'assets/images/i.webp');
                           final manga = box.getAt(index)!;
                           return GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        MangaReadScreen(mangaIndex: index))),
-                            child: Card(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      child: Image.file(
-                                          File(manga.pagePaths.first),
-                                          fit:
-                                              BoxFit.cover)), // Первая страница
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(manga.title),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          MangaReadScreen(mangaIndex: index))),
+                              child: MangaCard(
+                                manga: manga,
+                              ));
                         },
                       )
-                    : Image.asset('assets/images/cloud1.png');
+                    : Image.asset(
+                        'assets/images/cloud1.png',
+                        width: MediaQuery.of(context).size.width * 0.85,
+                      );
               },
             ),
             SizedBox(height: 20),

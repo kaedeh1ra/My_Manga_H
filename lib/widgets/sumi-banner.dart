@@ -16,8 +16,7 @@ class SumiStudioBanner extends StatelessWidget {
         width: size.width,
         height: size.width * 0.85,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black), // Черная рамка
-          color: Colors.white, // Белый фон
+          color: AppColors.backgroundLight,
         ),
         child: Stack(
           children: [

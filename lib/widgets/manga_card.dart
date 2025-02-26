@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:my_manga_h/manga_data.dart';
 import 'package:my_manga_h/theme.dart';
 
 class MangaCard extends StatelessWidget {
-  const MangaCard({super.key, required this.imagePath});
-  final String imagePath;
+  const MangaCard({super.key, required this.manga});
+  final MangaData manga;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +36,12 @@ class MangaCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                        color: Colors.black, width: 1), // Black border
+                    border: Border.all(color: Colors.black, width: 1),
                   ),
                   child: ClipRRect(
-                    // Clip the image to the rounded rectangle
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      imagePath,
+                    child: Image.file(
+                      File(manga.pagePaths.first),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -53,7 +54,7 @@ class MangaCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              'mangaTitle',
+              manga.title,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.center,
             ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:my_manga_h/theme.dart';
 import 'package:path_provider/path_provider.dart';
 import 'manga_data.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,11 @@ Future<void> main() async {
   await Hive.openBox('initialized');
   Hive.registerAdapter(MangaDataAdapter());
   await Hive.openBox<MangaData>('mangas');
-  runApp(SumiStudioApp());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(SumiStudioApp());
+  });
 }
 
 class SumiStudioApp extends StatelessWidget {
