@@ -65,9 +65,7 @@ class _MainScreenState extends State<MainScreen> {
                           return MangaCard(imagePath: 'assets/images/i.webp');
                         },
                       )
-                    : Image.asset(
-                        'assets/images/i.webp',
-                      );
+                    : Image.asset('assets/images/i.webp');
               },
             ),
             SizedBox(height: 20),

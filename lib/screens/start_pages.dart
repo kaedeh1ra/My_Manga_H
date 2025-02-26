@@ -262,7 +262,9 @@ class ThirdWidget extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Image.asset('assets/images/st_page_cloud.png'),
+              Image.asset(
+                'assets/images/st_page_cloud.png',
+              ),
               Text('ну вот анвар текста добавь'),
               Expanded(
                   child: SizedBox(
