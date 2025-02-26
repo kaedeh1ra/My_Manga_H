@@ -10,9 +10,11 @@ class Buttondef extends StatelessWidget {
     this.height = 60,
     this.isTextInside = false,
     this.text = '',
+    this.rounded = 12,
   });
 
   final bool isTextInside;
+  final int rounded;
   final String text;
   final IconData icon;
   final VoidCallback onTap;
@@ -31,9 +33,9 @@ class Buttondef extends StatelessWidget {
         height: height,
         child: Material(
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(rounded.toDouble()),
           child: InkWell(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(rounded.toDouble()),
             splashColor: AppColors.secondary,
             onTap: onTap,
             child: Padding(
@@ -46,7 +48,7 @@ class Buttondef extends StatelessWidget {
                       /// Поменяй размер текста если необходимо.
                       /// Если надо изменить шрифт TextStyle меняешь на GoogleFonts.'название шрифта'(все аргументы)
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                         color: AppColors.accent,
                       ),
                     )

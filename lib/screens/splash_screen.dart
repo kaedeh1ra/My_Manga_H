@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -51,19 +49,44 @@ class _SplashScreenState extends State<SplashScreen>
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             // Анимированный экран загрузки
-            body: Center(
-              child: AnimatedBuilder(
-                animation: _controller,
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(0, -50 * _animation.value),
-                    child: child,
-                  );
-                },
-                child: Text('Добавьте сюда че нибудь пока база грузится'),
-
-                /// TODO: Заменить Text на нужный виджет, предпологается картинка с облачком
-              ),
+            body: Stack(
+              children: [
+                Center(
+                  child: AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Transform.translate(
+                        offset: Offset(0, -50 * _animation.value),
+                        child: child,
+                      );
+                    },
+                    child: Image.asset(
+                      'assets/images/loadingCloud.png',
+                      fit: BoxFit.fitWidth,
+                      width: 200,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/images/loading_top_cloud.png', // Путь к вашему изображению
+                    fit: BoxFit.cover, // Или другой fit
+                  ),
+                ),
+                // Изображение внизу
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/images/loading_bottom_cloud.png', // Путь к вашему изображению
+                    fit: BoxFit.cover, // Или другой fit
+                  ),
+                ),
+              ],
             ),
           );
         } else if (snapshot.hasData) {

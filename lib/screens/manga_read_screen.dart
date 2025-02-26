@@ -68,8 +68,9 @@ class _MangaReadScreenState extends State<MangaReadScreen> {
         ],
       ),
       body: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            mainAxisExtent: MediaQuery.of(context).size.width / 9 * 16),
         itemCount: _manga.pagePaths.length,
         itemBuilder: (context, index) {
           final pagePath = _manga.pagePaths[index];
@@ -87,7 +88,12 @@ class _MangaReadScreenState extends State<MangaReadScreen> {
               color: Colors.red,
               child: Icon(CupertinoIcons.trash),
             ),
-            child: Image.file(File(pagePath)),
+            child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Image.file(
+                  File(pagePath),
+                  fit: BoxFit.cover,
+                )),
           );
         },
       ),

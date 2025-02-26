@@ -73,11 +73,11 @@ class _MainScreenState extends State<MainScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 1,
-                        ),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 1,
+                            mainAxisExtent: 200),
                         itemCount: box.length,
                         itemBuilder: (context, index) {
                           //return MangaCard(imagePath: 'assets/images/i.webp');

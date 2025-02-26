@@ -182,18 +182,21 @@ class FirstWidget extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Image.asset('assets/images/st_page_cloud.png'),
-              Text(
-                  'Хотите порисовать.С нашим приложением это предложение звучит куда лучше'),
               Expanded(
                   child: SizedBox(
                 height: 1,
               )),
-              Align(
-                alignment: Alignment.bottomCenter,
-
-                /// Размер текста в классе самой кнопке поменяй
-              )
+              Image.asset(
+                'assets/images/st_page_1_cloud.png',
+                height: 320,
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Image.asset(
+                'assets/images/loading_bottom_cloud.png',
+                fit: BoxFit.cover,
+              ),
             ],
           ),
         ),
@@ -215,18 +218,21 @@ class SecondWidget extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Image.asset('assets/images/st_page_cloud.png'),
-              Text(
-                  'В нашем приложении вы можете выразить все свое вдохновение и творить вне зависимости от вашего местоположения'),
               Expanded(
                   child: SizedBox(
                 height: 1,
               )),
-              Align(
-                alignment: Alignment.bottomCenter,
-
-                /// Размер текста в классе самой кнопке поменяй
-              )
+              Image.asset(
+                'assets/images/st_page_2_cloud.png',
+                height: 320,
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Image.asset(
+                'assets/images/loading_bottom_cloud.png',
+                fit: BoxFit.cover,
+              ),
             ],
           ),
         ),
@@ -249,19 +255,23 @@ class ThirdWidget extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Image.asset('assets/images/st_page_cloud.png'),
-              Text(
-                  'Наше пользовательское соглашение пока несформировано но для будующего маштабирования пусть будет'),
               Expanded(
                   child: SizedBox(
                 height: 1,
               )),
+              Image.asset(
+                'assets/images/st_page_3_cloud.png',
+                height: 300,
+              ),
+              SizedBox(
+                height: 0,
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
 
                 /// Размер текста в классе самой кнопке поменяй
                 child: Buttondef(
-                  height: 75,
+                  height: 60,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -270,10 +280,15 @@ class ThirdWidget extends StatelessWidget {
                       ),
                     );
                   },
+                  rounded: 20,
                   isTextInside: true,
-                  text: 'Нажимая далее вы соглашаетесь c политикой Sumi',
+                  text: 'Я согласен на обработку персональный данных',
                 ),
-              )
+              ),
+              Image.asset(
+                'assets/images/loading_bottom_cloud.png', // Путь к вашему изображению
+                fit: BoxFit.cover, // Или другой fit
+              ),
             ],
           ),
         ),
