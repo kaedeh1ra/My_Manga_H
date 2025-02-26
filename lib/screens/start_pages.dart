@@ -183,16 +183,16 @@ class FirstWidget extends StatelessWidget {
           child: Column(
             children: [
               Image.asset('assets/images/st_page_cloud.png'),
-              Text('Хотите порисовать.С нашим приложением это предложение звучит куда лучше'),
+              Text(
+                  'Хотите порисовать.С нашим приложением это предложение звучит куда лучше'),
               Expanded(
                   child: SizedBox(
-                    height: 1,
-                  )),
+                height: 1,
+              )),
               Align(
                 alignment: Alignment.bottomCenter,
 
                 /// Размер текста в классе самой кнопке поменяй
-
               )
             ],
           ),
@@ -216,58 +216,21 @@ class SecondWidget extends StatelessWidget {
           child: Column(
             children: [
               Image.asset('assets/images/st_page_cloud.png'),
-              Text('В нашем приложении вы можете выразить все свое вдохновение и творить вне зависимости от вашего местоположения'),
+              Text(
+                  'В нашем приложении вы можете выразить все свое вдохновение и творить вне зависимости от вашего местоположения'),
               Expanded(
                   child: SizedBox(
-                    height: 1,
-                  )),
+                height: 1,
+              )),
               Align(
                 alignment: Alignment.bottomCenter,
 
                 /// Размер текста в классе самой кнопке поменяй
-                
               )
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({super.key});
-
-  @override
-  State<CheckboxExample> createState() => _CheckboxExampleState();
-}
-
-class _CheckboxExampleState extends State<CheckboxExample> {
-  bool isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<WidgetState> states) {
-      const Set<WidgetState> interactiveStates = <WidgetState>{
-        WidgetState.pressed,
-        WidgetState.hovered,
-        WidgetState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.red;
-    }
-
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: WidgetStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
     );
   }
 }
@@ -287,7 +250,8 @@ class ThirdWidget extends StatelessWidget {
           child: Column(
             children: [
               Image.asset('assets/images/st_page_cloud.png'),
-              Text('Наше пользовательское соглашение пока несформировано но для будующего маштабирования пусть будет'),
+              Text(
+                  'Наше пользовательское соглашение пока несформировано но для будующего маштабирования пусть будет'),
               Expanded(
                   child: SizedBox(
                 height: 1,
@@ -297,9 +261,10 @@ class ThirdWidget extends StatelessWidget {
 
                 /// Размер текста в классе самой кнопке поменяй
                 child: Buttondef(
+                  height: 75,
                   onTap: () {},
                   isTextInside: true,
-                  text: 'Нажимая далее вы соглашаетесь',
+                  text: 'Нажимая далее вы соглашаетесь c политикой Sumi',
                 ),
               )
             ],

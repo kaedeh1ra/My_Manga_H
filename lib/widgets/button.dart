@@ -7,7 +7,7 @@ class Buttondef extends StatelessWidget {
     this.icon = Icons.image_search_outlined,
     required this.onTap,
     this.width = 200,
-    this.height = 30,
+    this.height = 60,
     this.isTextInside = false,
     this.text = '',
   });
@@ -28,7 +28,7 @@ class Buttondef extends StatelessWidget {
           horizontal: 20, vertical: 10), // Задаем отступы
       child: SizedBox(
         width: size.width,
-        height: 60,
+        height: height,
         child: Material(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12),
@@ -41,10 +41,14 @@ class Buttondef extends StatelessWidget {
               child: isTextInside
                   ? Text(
                       text,
+                      textAlign: TextAlign.center,
 
                       /// Поменяй размер текста если необходимо.
                       /// Если надо изменить шрифт TextStyle меняешь на GoogleFonts.'название шрифта'(все аргументы)
-                      style: TextStyle(fontSize: 40, color: AppColors.accent),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColors.accent,
+                      ),
                     )
                   : Icon(
                       icon,
