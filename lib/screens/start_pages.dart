@@ -262,7 +262,14 @@ class ThirdWidget extends StatelessWidget {
                 /// Размер текста в классе самой кнопке поменяй
                 child: Buttondef(
                   height: 75,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainScreen(),
+                      ),
+                    );
+                  },
                   isTextInside: true,
                   text: 'Нажимая далее вы соглашаетесь c политикой Sumi',
                 ),

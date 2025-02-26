@@ -2,9 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/manga_data.dart';
+import 'package:path/path.dart' as path;
 import 'package:my_manga_h/widgets/button.dart';
 import 'package:my_manga_h/widgets/manga_card.dart';
 import 'package:my_manga_h/widgets/sumi-banner.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'manga_read_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -37,8 +42,22 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icons.add,
               onTap: () async {
                 final mangaIndex = Hive.box<MangaData>('mangas').length;
-                final firstPagePath =
-                    'path/to/manga/$mangaIndex/0.png'; // Пока заглушка, позже заменим на реальное сохранение
+                final appDir = await getApplicationDocumentsDirectory();
+                final mangaDir = Directory('${appDir.path}/manga/$mangaIndex');
+
+                // Проверяем, существует ли директория, и создаем, если нет
+                if (!await mangaDir.exists()) {
+                  await mangaDir.create(recursive: true);
+                }
+
+                // Копируем 0.png из assets
+                final assetBundle = DefaultAssetBundle.of(context);
+                final byteData = await assetBundle.load('assets/images/0.png');
+                final buffer = byteData.buffer;
+                final firstPagePath = path.join(mangaDir.path, '0.png');
+                await File(firstPagePath).writeAsBytes(buffer.asUint8List(
+                    byteData.offsetInBytes, byteData.lengthInBytes));
+
                 final newManga =
                     MangaData(title: 'Новая манга', pagePaths: [firstPagePath]);
                 await Hive.box<MangaData>('mangas').add(newManga);
@@ -61,18 +80,40 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                         itemCount: box.length,
                         itemBuilder: (context, index) {
-                          final imagePath = box.getAt(index);
-                          return MangaCard(imagePath: 'assets/images/i.webp');
+                          //return MangaCard(imagePath: 'assets/images/i.webp');
+                          final manga = box.getAt(index)!;
+                          return GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MangaReadScreen(mangaIndex: index))),
+                            child: Card(
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                      child: Image.file(
+                                          File(manga.pagePaths.first),
+                                          fit:
+                                              BoxFit.cover)), // Первая страница
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(manga.title),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         },
                       )
-                    : Image.asset('assets/images/i.webp');
+                    : Image.asset('assets/images/cloud1.png');
               },
             ),
             SizedBox(height: 20),
             FittedBox(
               fit: BoxFit.cover,
               child: Image.asset(
-                'assets/images/i.webp',
+                'assets/images/clouds2.png',
               ),
             )
           ],

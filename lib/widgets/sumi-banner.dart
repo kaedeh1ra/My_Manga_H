@@ -23,7 +23,7 @@ class SumiStudioBanner extends StatelessWidget {
           children: [
             // Основное изображение
             Image.asset(
-              'assets/images/i.webp', // Замените на URL вашего основного изображения
+              'assets/images/pictureSUMI.png', // Замените на URL вашего основного изображения
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.cover, // Растягиваем изображение на весь контейнер
