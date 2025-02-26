@@ -3,13 +3,17 @@ import 'package:my_manga_h/initialized.dart';
 import 'package:my_manga_h/screens/1screens.dart';
 import 'package:flutter/material.dart';
 import 'package:my_manga_h/theme.dart';
+import 'package:path_provider/path_provider.dart';
+import 'manga_data.dart';
 
 Future<void> main() async {
-  await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDir = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter(appDocumentDir.path);
   Hive.registerAdapter(InitializedAdapter());
   await Hive.openBox('initialized');
-
-  await Hive.openBox<String>('images');
+  Hive.registerAdapter(MangaDataAdapter());
+  await Hive.openBox<MangaData>('mangas');
   runApp(SumiStudioApp());
 }
 

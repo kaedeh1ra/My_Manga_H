@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/initialized.dart';
 import 'package:my_manga_h/screens/1screens.dart';
+import 'package:my_manga_h/widgets/button.dart';
 
 class StartPages extends StatefulWidget {
   const StartPages({super.key});
@@ -34,6 +35,7 @@ class _StartPagesState extends State<StartPages> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    var checkedValue = 5;
 
     return Container(
       color: colorScheme.background,
@@ -175,8 +177,27 @@ class FirstWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Center(
-      child: Text('денис Гы гы x1', style: textTheme.titleLarge),
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text(
+                  'Хотите порисовать.С нашим приложением это предложение звучит куда лучше'),
+              Expanded(
+                  child: SizedBox(
+                height: 1,
+              )),
+              Align(
+                alignment: Alignment.bottomCenter,
+
+                /// Размер текста в классе самой кнопке поменяй
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -189,8 +210,27 @@ class SecondWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Center(
-      child: Text('денис Гы гы x2', style: textTheme.titleLarge),
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text(
+                  'В нашем приложении вы можете выразить все свое вдохновение и творить вне зависимости от вашего местоположения'),
+              Expanded(
+                  child: SizedBox(
+                height: 1,
+              )),
+              Align(
+                alignment: Alignment.bottomCenter,
+
+                /// Размер текста в классе самой кнопке поменяй
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -204,18 +244,34 @@ class ThirdWidget extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     /// TODO: Есть кнопка готовая Buttondef() Посмотри её аргументы и добавь на неё принятие политики и переход на другой экран
-    return Center(
-        child: GestureDetector(
-      onTap: () {
-        /// Приянтие политики конфиденциальности находится в функции ниже
-        _updateInitialBox();
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => MainScreen()),
-        );
-      },
-      child: Text('денис Гы гы x3', style: textTheme.titleLarge),
-    ));
+    return Flexible(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/st_page_cloud.png'),
+              Text(
+                  'Наше пользовательское соглашение пока несформировано но для будующего маштабирования пусть будет'),
+              Expanded(
+                  child: SizedBox(
+                height: 1,
+              )),
+              Align(
+                alignment: Alignment.bottomCenter,
+
+                /// Размер текста в классе самой кнопке поменяй
+                child: Buttondef(
+                  height: 75,
+                  onTap: () {},
+                  isTextInside: true,
+                  text: 'Нажимая далее вы соглашаетесь c политикой Sumi',
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   void _updateInitialBox() async {

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_manga_h/manga_data.dart';
 import 'package:my_manga_h/widgets/button.dart';
 import 'package:my_manga_h/widgets/manga_card.dart';
 import 'package:my_manga_h/widgets/sumi-banner.dart';
@@ -13,12 +14,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late Box<String> imagesBox;
+  late Box<MangaData> mangaBox;
 
   @override
   void initState() {
     super.initState();
-    imagesBox = Hive.box<String>('images');
+    mangaBox = Hive.box<MangaData>('mangas');
   }
 
   @override
@@ -35,21 +36,20 @@ class _MainScreenState extends State<MainScreen> {
             Buttondef(
               icon: Icons.add,
               onTap: () async {
-                // TODO: Реализуйте логику выбора изображения (например, с помощью image_picker)
-                // Временный путь для примера (замените на реальный путь к изображению)
-                String tempImagePath = '/path/to/your/image.jpg';
-
-                // Сохраняем путь к изображению в Hive
-                await imagesBox.add(tempImagePath);
-
+                final mangaIndex = Hive.box<MangaData>('mangas').length;
+                final firstPagePath =
+                    'path/to/manga/$mangaIndex/0.png'; // Пока заглушка, позже заменим на реальное сохранение
+                final newManga =
+                    MangaData(title: 'Новая манга', pagePaths: [firstPagePath]);
+                await Hive.box<MangaData>('mangas').add(newManga);
                 setState(() {}); // Обновляем UI
               },
             ),
             // Виджеты с картинками в два столбца
             ValueListenableBuilder(
-              valueListenable: imagesBox.listenable(),
-              builder: (context, Box<String> box, _) {
-                return imagesBox.length != 0
+              valueListenable: mangaBox.listenable(),
+              builder: (context, Box<MangaData> box, _) {
+                return mangaBox.length != 0
                     ? GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -65,9 +65,7 @@ class _MainScreenState extends State<MainScreen> {
                           return MangaCard(imagePath: 'assets/images/i.webp');
                         },
                       )
-                    : Image.asset(
-                        'assets/images/i.webp',
-                      );
+                    : Image.asset('assets/images/i.webp');
               },
             ),
             SizedBox(height: 20),
