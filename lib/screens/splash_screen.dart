@@ -12,26 +12,42 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
+    with TickerProviderStateMixin {
+  // Use TickerProviderStateMixin
+
+  late AnimationController _cloudController; // Controller for cloud bounce
+  late Animation<double> _cloudAnimation;
+
+  late AnimationController _fadeController; // Controller for fade-in
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+
+    // Cloud Bounce Animation
+    _cloudController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
     )..repeat(reverse: true);
-    _animation = CurvedAnimation(
-      parent: _controller,
+    _cloudAnimation = CurvedAnimation(
+      parent: _cloudController,
       curve: Curves.easeInOut,
     );
+
+    // Fade-in Animation
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..forward(); // Start fade-in immediately
+    _fadeAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_fadeController);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _cloudController.dispose();
+    _fadeController.dispose();
     super.dispose();
   }
 
@@ -39,24 +55,20 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return FutureBuilder<Box>(
       future: Future.wait([
-        // Используем Future.wait для одновременного выполнения
         Hive.openBox('initialized'),
-        Future.delayed(const Duration(seconds: 3)),
-
-        /// Длительность анимации
+        Future.delayed(const Duration(seconds: 5)),
       ]).then((results) => results[0]),
       builder: (BuildContext context, AsyncSnapshot<Box> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
-            // Анимированный экран загрузки
             body: Stack(
               children: [
                 Center(
                   child: AnimatedBuilder(
-                    animation: _controller,
+                    animation: _cloudAnimation, // Use _cloudAnimation here
                     builder: (context, child) {
                       return Transform.translate(
-                        offset: Offset(0, -50 * _animation.value),
+                        offset: Offset(0, -50 * _cloudAnimation.value),
                         child: child,
                       );
                     },
@@ -71,19 +83,24 @@ class _SplashScreenState extends State<SplashScreen>
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Image.asset(
-                    'assets/images/loading_top_cloud.png', // Путь к вашему изображению
-                    fit: BoxFit.cover, // Или другой fit
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Image.asset(
+                      'assets/images/loading_top_cloud.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                // Изображение внизу
                 Positioned(
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Image.asset(
-                    'assets/images/loading_bottom_cloud.png', // Путь к вашему изображению
-                    fit: BoxFit.cover, // Или другой fit
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Image.asset(
+                      'assets/images/loading_bottom_cloud.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],
@@ -104,9 +121,7 @@ class _SplashScreenState extends State<SplashScreen>
           final initialized = box.get('initialized') as Initialized;
           final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-          // Используем WidgetsBinding.instance.addPostFrameCallback для навигации
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            /// Переход на экран в зависимости от того принял человек политику кондфиденциальности или нет
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -135,11 +150,4 @@ class _SplashScreenState extends State<SplashScreen>
       },
     );
   }
-}
-
-void goToNewScreenAndRemoveLast(context, var screen) {
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => screen),
-  );
 }
