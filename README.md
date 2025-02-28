@@ -1,16 +1,26 @@
-# Sumi Studio
+# Sumi Studio: Твой мир манги
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Добро пожаловать в Sumi Studio – приложение, созданное для истинных ценителей манги!  Здесь ты сможешь не только погрузиться в чтение любимых произведений, но и раскрыть свой творческий потенциал, создавая собственные шедевры.
 
-A few resources to get you started if this is your first Flutter project:
+## Что такое Sumi Studio?
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Sumi Studio – это больше, чем просто читалка. Это твой портал в мир японских комиксов, где ты можешь:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* **Читать мангу:** Наслаждайся обширной библиотекой манги, доступной прямо в твоем устройстве.
+* **Рисовать мангу:**  Воплоти свои идеи в жизнь с помощью мощных инструментов для рисования, вдохновленных традиционными японскими чернилами *суми*.
+
+## Sumi – вдохновение традициями
+
+Название приложения, Sumi Studio, отсылает к традиционным японским чернилам *суми*, которые веками использовались художниками для создания захватывающих дух картин.  Мы стремимся передать эту атмосферу творчества и вдохновения в нашем приложении, предоставляя пользователям инструменты для создания собственных уникальных историй.
+
+## Связь с нами
+
+Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами по адресу [https://t.me/TLMIzhevsk] 
+
+---
+
+<p align="center">
+  Создано с ❤️ для любителей манги!
+</p>
