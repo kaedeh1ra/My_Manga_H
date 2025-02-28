@@ -11,8 +11,9 @@ class Buttondef extends StatelessWidget {
     this.isTextInside = false,
     this.text = '',
     this.rounded = 12,
+    this.textSize = 15,
   });
-
+  final int textSize;
   final bool isTextInside;
   final int rounded;
   final String text;
@@ -48,7 +49,7 @@ class Buttondef extends StatelessWidget {
                       /// Поменяй размер текста если необходимо.
                       /// Если надо изменить шрифт TextStyle меняешь на GoogleFonts.'название шрифта'(все аргументы)
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: textSize.toDouble(),
                         color: AppColors.accent,
                       ),
                     )

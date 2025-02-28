@@ -191,7 +191,18 @@ class FirstWidget extends StatelessWidget {
                 height: 320,
               ),
               SizedBox(
-                height: 60,
+                height: 0,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Buttondef(
+                  height: 60,
+                  textSize: 30,
+                  onTap: () {},
+                  rounded: 20,
+                  isTextInside: true,
+                  text: '------------------->',
+                ),
               ),
               Image.asset(
                 'assets/images/loading_bottom_cloud.png',
@@ -227,7 +238,18 @@ class SecondWidget extends StatelessWidget {
                 height: 320,
               ),
               SizedBox(
-                height: 60,
+                height: 0,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Buttondef(
+                  height: 60,
+                  textSize: 30,
+                  onTap: () {},
+                  rounded: 20,
+                  isTextInside: true,
+                  text: '------------------->',
+                ),
               ),
               Image.asset(
                 'assets/images/loading_bottom_cloud.png',
@@ -268,12 +290,11 @@ class ThirdWidget extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-
-                /// Размер текста в классе самой кнопке поменяй
                 child: Buttondef(
                   height: 60,
                   onTap: () {
-                    Navigator.push(
+                    _updateInitialBox();
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => MainScreen(),

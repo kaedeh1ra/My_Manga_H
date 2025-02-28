@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_manga_h/manga_data.dart';
 import 'package:path/path.dart' as path;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_manga_h/widgets/button.dart';
 import 'package:my_manga_h/widgets/manga_card.dart';
 import 'package:my_manga_h/widgets/sumi-banner.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'manga_read_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,6 +28,13 @@ class _MainScreenState extends State<MainScreen> {
     mangaBox = Hive.box<MangaData>('mangas');
   }
 
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +44,9 @@ class _MainScreenState extends State<MainScreen> {
             SizedBox(height: 40),
             SumiStudioBanner(
               text: 'Идеи',
-              onTap: () {},
+              onTap: () {
+                _launchUrl('https://ru.freepik.com/');
+              },
             ),
             Buttondef(
               icon: Icons.add,
