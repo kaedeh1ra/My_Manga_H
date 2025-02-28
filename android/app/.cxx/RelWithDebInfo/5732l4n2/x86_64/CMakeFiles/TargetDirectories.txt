@@ -1,0 +1,2 @@
+D:/Amongasik/program files/Sumsungfiles/My_Manga_H/android/app/.cxx/RelWithDebInfo/5732l4n2/x86_64/CMakeFiles/edit_cache.dir
+D:/Amongasik/program files/Sumsungfiles/My_Manga_H/android/app/.cxx/RelWithDebInfo/5732l4n2/x86_64/CMakeFiles/rebuild_cache.dir
